@@ -99,7 +99,7 @@ namespace WindowsFormsPIMVIII
 
             /* Definindo Pessoa */
             pessoa.nome = txtNome.Text;
-            pessoa.cpf = Int64.Parse(txtCPF.Text);
+            pessoa.cpf = Int64.Parse(txtCPF.Text );
             /* Definindo Endereço da Pessoa */
             end_Pessoa.logradouro = txtLogradouro.Text;
             end_Pessoa.numero = Int32.Parse(txtNumero.Text);
