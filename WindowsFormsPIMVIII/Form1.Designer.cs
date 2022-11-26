@@ -294,7 +294,7 @@ namespace WindowsFormsPIMVIII
             this.listView1.Location = new System.Drawing.Point(420, 25);
             this.listView1.Name = "listView1";
             this.listView1.Size = new System.Drawing.Size(268, 409);
-            this.listView1.TabIndex = 22;
+            this.listView1.TabIndex = 0;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
             // 
@@ -337,7 +337,7 @@ namespace WindowsFormsPIMVIII
             this.label11.Location = new System.Drawing.Point(153, 449);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(204, 22);
-            this.label11.TabIndex = 28;
+            this.label11.TabIndex = 0;
             this.label11.Text = "Digite o ID para atualizar";
             this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -357,7 +357,7 @@ namespace WindowsFormsPIMVIII
             this.txtNome.Location = new System.Drawing.Point(137, 25);
             this.txtNome.Name = "txtNome";
             this.txtNome.Size = new System.Drawing.Size(241, 29);
-            this.txtNome.TabIndex = 29;
+            this.txtNome.TabIndex = 1;
             // 
             // txtCPF
             // 
@@ -366,7 +366,7 @@ namespace WindowsFormsPIMVIII
             this.txtCPF.Location = new System.Drawing.Point(137, 60);
             this.txtCPF.Name = "txtCPF";
             this.txtCPF.Size = new System.Drawing.Size(241, 29);
-            this.txtCPF.TabIndex = 30;
+            this.txtCPF.TabIndex = 2;
             // 
             // atuinfo
             // 
@@ -375,7 +375,7 @@ namespace WindowsFormsPIMVIII
             this.atuinfo.Location = new System.Drawing.Point(245, 482);
             this.atuinfo.Name = "atuinfo";
             this.atuinfo.Size = new System.Drawing.Size(135, 35);
-            this.atuinfo.TabIndex = 31;
+            this.atuinfo.TabIndex = 15;
             this.atuinfo.Text = "Atualizar";
             this.atuinfo.UseVisualStyleBackColor = true;
             this.atuinfo.Click += new System.EventHandler(this.atuinfo_Click);
@@ -386,8 +386,8 @@ namespace WindowsFormsPIMVIII
             this.inserinfo.Font = new System.Drawing.Font("Avenir Next", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.inserinfo.Location = new System.Drawing.Point(137, 399);
             this.inserinfo.Name = "inserinfo";
-            this.inserinfo.Size = new System.Drawing.Size(241, 35);
-            this.inserinfo.TabIndex = 32;
+            this.inserinfo.Size = new System.Drawing.Size(243, 35);
+            this.inserinfo.TabIndex = 13;
             this.inserinfo.Text = "Enviar";
             this.inserinfo.UseVisualStyleBackColor = true;
             this.inserinfo.Click += new System.EventHandler(this.inserinfo_Click);
@@ -399,7 +399,7 @@ namespace WindowsFormsPIMVIII
             this.buttonRefresh.Location = new System.Drawing.Point(1236, 480);
             this.buttonRefresh.Name = "buttonRefresh";
             this.buttonRefresh.Size = new System.Drawing.Size(193, 35);
-            this.buttonRefresh.TabIndex = 35;
+            this.buttonRefresh.TabIndex = 18;
             this.buttonRefresh.Text = "Ver Alterações";
             this.buttonRefresh.UseVisualStyleBackColor = true;
             this.buttonRefresh.Click += new System.EventHandler(this.buttonRefresh_Click);
@@ -410,7 +410,7 @@ namespace WindowsFormsPIMVIII
             this.listView2.Location = new System.Drawing.Point(694, 25);
             this.listView2.Name = "listView2";
             this.listView2.Size = new System.Drawing.Size(268, 409);
-            this.listView2.TabIndex = 36;
+            this.listView2.TabIndex = 0;
             this.listView2.UseCompatibleStateImageBehavior = false;
             // 
             // listView3
