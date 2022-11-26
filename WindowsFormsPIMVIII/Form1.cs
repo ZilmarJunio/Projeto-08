@@ -21,6 +21,28 @@ namespace WindowsFormsPIMVIII
         public Form1()
         {
             InitializeComponent();
+            listView1.View = View.Details;
+            listView1.LabelEdit = true;
+            listView1.AllowColumnReorder = true;
+            listView1.FullRowSelect = true;
+            listView1.GridLines = true;
+
+            listView1.Columns.Add("ID", 30, HorizontalAlignment.Left);
+            listView1.Columns.Add("Nome", 150, HorizontalAlignment.Left);
+            listView1.Columns.Add("CPF", 150, HorizontalAlignment.Left);
+            listView1.Columns.Add("ID_Tel", 60, HorizontalAlignment.Left);
+            listView1.Columns.Add("Número", 150, HorizontalAlignment.Left);
+            listView1.Columns.Add("DDD", 60, HorizontalAlignment.Left);
+            listView1.Columns.Add("Tipo_Tel", 70, HorizontalAlignment.Left);
+
+            listView1.Columns.Add("ID_Endereço", 60, HorizontalAlignment.Left);
+            listView1.Columns.Add("Logradouro", 60, HorizontalAlignment.Left);
+            listView1.Columns.Add("Número", 60, HorizontalAlignment.Left);
+            listView1.Columns.Add("CEP", 60, HorizontalAlignment.Left);
+            listView1.Columns.Add("Bairro", 60, HorizontalAlignment.Left);
+            listView1.Columns.Add("Cidade", 60, HorizontalAlignment.Left);
+            listView1.Columns.Add("Estado", 60, HorizontalAlignment.Left);
+
         }
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -120,24 +142,45 @@ namespace WindowsFormsPIMVIII
 
                 tipotelefone_Pessoa.id_telefone = Check_telefone_tipo();
 
+                string sql_script_lastID =
+                /* Início do script de exclusão de dados*/
+                "SELECT LAST_INSERT_ID();";
+                /* Final do script de exclusão de dados*/
+
+                Conexao_Com_DB.Open();
+
+                MySqlCommand EnviarComando_lastID = new MySqlCommand(sql_script_lastID, Conexao_Com_DB);
+
+                MySqlDataReader reader = EnviarComando_lastID.ExecuteReader();
+
+                int lastID=1;
+
+                while (reader.Read())
+                {
+                    lastID = reader.GetInt16(0);
+                    lastID++;
+                }
+
                 string sql_script =
 
                     /* Início do script */
-                    "INSERT INTO pessoa(nome, cpf)" +
-                    "VALUES('" + pessoa.nome + "','" + pessoa.cpf + "');" +
+                    "INSERT INTO pessoa(id, nome, cpf, endereco, telefones)" +
+                    "VALUES('" + lastID + "','" + pessoa.nome + "','" + pessoa.cpf + "','" + lastID + "','"+ lastID + "');" +
 
-                    "INSERT INTO endereco(logradouro, numero, cep, bairro, cidade, estado)" +
-                    "VALUES('" + end_Pessoa.logradouro + "','" + end_Pessoa.numero + "','" + end_Pessoa.cep +
+                    "INSERT INTO endereco(id, logradouro, numero, cep, bairro, cidade, estado)" +
+                    "VALUES('" + lastID + "','" + end_Pessoa.logradouro + "','" + end_Pessoa.numero + "','" + end_Pessoa.cep +
                     "','" + end_Pessoa.bairro + "','" + end_Pessoa.cidade + "','" + end_Pessoa.estado + "');" +
 
-                    "INSERT INTO telefone(numero, ddd, tipo)" +
-                    "VALUES('" + telefone_pessoa.numero + "','" + telefone_pessoa.ddd + "','" + tipotelefone_Pessoa.id_telefone + "');";
-                    /* Final do script */
+                    "INSERT INTO telefone(id, numero, ddd, tipo)" +
+                    "VALUES('" + lastID + "','" + telefone_pessoa.numero + "','" + telefone_pessoa.ddd + "','" + 1 + "');"+
+                    "INSERT INTO pessoa_telefone(id_pessoa, id_telefone)" +
+                    "VALUES('"+ lastID + "','"+ lastID + "');";
+                /* Final do script */
+
+                reader.Close();
 
                 MySqlCommand EnviarComando = new MySqlCommand(sql_script, Conexao_Com_DB);
                 MySqlCommand Info_Leitura = EnviarComando;
-
-                Conexao_Com_DB.Open();
 
                 Info_Leitura.ExecuteReader();
 
@@ -171,10 +214,10 @@ namespace WindowsFormsPIMVIII
                 string sql_script =
 
                     /* Início do script de exclusão de dados*/
-                    "DELETE FROM pessoa WHERE ID=" + id_remover + ";" +
                     "DELETE FROM endereco WHERE ID=" + id_remover + ";" +
-                    "DELETE FROM pessoa_telefone WHERE ID=" + id_remover + ";" +
-                    "DELETE FROM telefone WHERE ID=" + id_remover + ";";
+                    "DELETE FROM telefone WHERE ID=" + id_remover + ";" +
+                    "DELETE FROM pessoa WHERE ID=" + id_remover + ";" +
+                    "DELETE FROM pessoa_telefone WHERE id_pessoa=" + id_remover + " and id_telefone=" + id_remover + ";";
                     /* Final do script de exclusão de dados*/
 
                 MySqlCommand EnviarComando = new MySqlCommand(sql_script, Conexao_Com_DB);
@@ -220,6 +263,67 @@ namespace WindowsFormsPIMVIII
             return 0;
         }
 
+        private void buttonRefresh_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                /* Definindo Fonte de Dados (Banco de dados) */
+                string data_source = "datasource=localhost;username=root;password=;database=conexao";
+                /* Estabelecendo nova conexão (Banco de dados) */
+                Conexao_Com_DB = new MySqlConnection(data_source);
+
+                string sql_script =
+
+                /* Início do script de exclusão de dados*/
+                "SELECT * FROM pessoa;" +
+                "SELECT * FROM telefone;"+
+                "SELECT * FROM endereco;";
+                /* Final do script de exclusão de dados*/
+
+                Conexao_Com_DB.Open();
+
+                MySqlCommand EnviarComando = new MySqlCommand(sql_script, Conexao_Com_DB);
+
+                MySqlDataReader reader = EnviarComando.ExecuteReader();
+
+                listView1.Items.Clear();
+
+                while(reader.Read())
+                {
+                    string[] row =
+                    {
+                        reader.GetString(0),
+                        reader.GetString(1),
+                        reader.GetString(2),
+                        reader.GetString(3),
+                        reader.GetString(4),
+                        reader.GetString(5),
+                        reader.GetString(6),
+                        reader.GetString(7),
+                        reader.GetString(8),
+                        reader.GetString(9),
+                        reader.GetString(10),
+                        reader.GetString(11),
+                        reader.GetString(12),
+                        reader.GetString(13),
+                        reader.GetString(14),
+                    };
+                    var linha_listView1 = new ListViewItem(row);
+                    listView1.Items.Add(linha_listView1);
+                }
+
+                MessageBox.Show("Sucesso na operação [Op 4 - Exibir Dados].");
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                Conexao_Com_DB.Close();
+            }
+        }
     }
 
 }

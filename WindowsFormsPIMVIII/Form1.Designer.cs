@@ -61,6 +61,7 @@ namespace WindowsFormsPIMVIII
             this.txtCPF = new System.Windows.Forms.TextBox();
             this.atuinfo = new System.Windows.Forms.Button();
             this.inserinfo = new System.Windows.Forms.Button();
+            this.buttonRefresh = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -290,7 +291,7 @@ namespace WindowsFormsPIMVIII
             this.listView1.HideSelection = false;
             this.listView1.Location = new System.Drawing.Point(420, 25);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(358, 409);
+            this.listView1.Size = new System.Drawing.Size(1009, 409);
             this.listView1.TabIndex = 22;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
@@ -299,7 +300,7 @@ namespace WindowsFormsPIMVIII
             // 
             this.excluinfo.Cursor = System.Windows.Forms.Cursors.Hand;
             this.excluinfo.Font = new System.Drawing.Font("Avenir Next", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.excluinfo.Location = new System.Drawing.Point(576, 482);
+            this.excluinfo.Location = new System.Drawing.Point(773, 482);
             this.excluinfo.Name = "excluinfo";
             this.excluinfo.Size = new System.Drawing.Size(135, 35);
             this.excluinfo.TabIndex = 17;
@@ -311,7 +312,7 @@ namespace WindowsFormsPIMVIII
             // 
             this.textIDRemover.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textIDRemover.Font = new System.Drawing.Font("Avenir Next", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textIDRemover.Location = new System.Drawing.Point(472, 486);
+            this.textIDRemover.Location = new System.Drawing.Point(669, 486);
             this.textIDRemover.Name = "textIDRemover";
             this.textIDRemover.Size = new System.Drawing.Size(100, 29);
             this.textIDRemover.TabIndex = 16;
@@ -320,7 +321,7 @@ namespace WindowsFormsPIMVIII
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Avenir Next", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(488, 449);
+            this.label10.Location = new System.Drawing.Point(685, 449);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(203, 22);
             this.label10.TabIndex = 25;
@@ -389,12 +390,25 @@ namespace WindowsFormsPIMVIII
             this.inserinfo.UseVisualStyleBackColor = true;
             this.inserinfo.Click += new System.EventHandler(this.inserinfo_Click);
             // 
+            // buttonRefresh
+            // 
+            this.buttonRefresh.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonRefresh.Font = new System.Drawing.Font("Avenir Next", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonRefresh.Location = new System.Drawing.Point(1236, 480);
+            this.buttonRefresh.Name = "buttonRefresh";
+            this.buttonRefresh.Size = new System.Drawing.Size(193, 35);
+            this.buttonRefresh.TabIndex = 35;
+            this.buttonRefresh.Text = "Ver Alterações";
+            this.buttonRefresh.UseVisualStyleBackColor = true;
+            this.buttonRefresh.Click += new System.EventHandler(this.buttonRefresh_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.ClientSize = new System.Drawing.Size(801, 546);
+            this.ClientSize = new System.Drawing.Size(1441, 546);
+            this.Controls.Add(this.buttonRefresh);
             this.Controls.Add(this.inserinfo);
             this.Controls.Add(this.atuinfo);
             this.Controls.Add(this.txtCPF);
@@ -470,6 +484,7 @@ namespace WindowsFormsPIMVIII
         private System.Windows.Forms.TextBox txtCPF;
         private System.Windows.Forms.Button atuinfo;
         private System.Windows.Forms.Button inserinfo;
+        private System.Windows.Forms.Button buttonRefresh;
     }
 }
 
