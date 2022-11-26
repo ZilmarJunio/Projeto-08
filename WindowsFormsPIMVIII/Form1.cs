@@ -21,27 +21,29 @@ namespace WindowsFormsPIMVIII
         public Form1()
         {
             InitializeComponent();
-            listView1.View = View.Details;
-            listView1.LabelEdit = true;
-            listView1.AllowColumnReorder = true;
-            listView1.FullRowSelect = true;
-            listView1.GridLines = true;
 
+            //Ajustes dos lists view
+            listView1.View = View.Details; listView2.View = View.Details; listView3.View = View.Details;
+            listView1.LabelEdit = true; listView2.LabelEdit = true; listView3.LabelEdit = true;
+            listView1.AllowColumnReorder = true; listView2.AllowColumnReorder = true; listView3.AllowColumnReorder = true;
+            listView1.FullRowSelect = true; listView2.FullRowSelect = true; listView3.FullRowSelect = true;
+            listView1.GridLines = true; listView2.GridLines = true; listView3.GridLines = true;
+
+            //View-1
             listView1.Columns.Add("ID", 30, HorizontalAlignment.Left);
-            listView1.Columns.Add("Nome", 150, HorizontalAlignment.Left);
-            listView1.Columns.Add("CPF", 150, HorizontalAlignment.Left);
-            listView1.Columns.Add("ID_Tel", 60, HorizontalAlignment.Left);
-            listView1.Columns.Add("Número", 150, HorizontalAlignment.Left);
-            listView1.Columns.Add("DDD", 60, HorizontalAlignment.Left);
-            listView1.Columns.Add("Tipo_Tel", 70, HorizontalAlignment.Left);
-
-            listView1.Columns.Add("ID_Endereço", 60, HorizontalAlignment.Left);
-            listView1.Columns.Add("Logradouro", 60, HorizontalAlignment.Left);
-            listView1.Columns.Add("Número", 60, HorizontalAlignment.Left);
-            listView1.Columns.Add("CEP", 60, HorizontalAlignment.Left);
-            listView1.Columns.Add("Bairro", 60, HorizontalAlignment.Left);
-            listView1.Columns.Add("Cidade", 60, HorizontalAlignment.Left);
-            listView1.Columns.Add("Estado", 60, HorizontalAlignment.Left);
+            listView1.Columns.Add("Nome", 60, HorizontalAlignment.Left);
+            listView1.Columns.Add("CPF", 60, HorizontalAlignment.Left);
+            //View-2
+            listView2.Columns.Add("Número", 80, HorizontalAlignment.Left);
+            listView2.Columns.Add("DDD", 40, HorizontalAlignment.Left);
+            listView2.Columns.Add("Tipo_Tel", 80, HorizontalAlignment.Left);
+            //View-3
+            listView3.Columns.Add("Logradouro", 100, HorizontalAlignment.Left);
+            listView3.Columns.Add("Número", 80, HorizontalAlignment.Left);
+            listView3.Columns.Add("CEP", 60, HorizontalAlignment.Left);
+            listView3.Columns.Add("Bairro", 60, HorizontalAlignment.Left);
+            listView3.Columns.Add("Cidade", 60, HorizontalAlignment.Left);
+            listView3.Columns.Add("Estado", 60, HorizontalAlignment.Left);
 
         }
         private void Form1_Load(object sender, EventArgs e)
@@ -142,39 +144,45 @@ namespace WindowsFormsPIMVIII
 
                 tipotelefone_Pessoa.id_telefone = Check_telefone_tipo();
 
-                string sql_script_lastID =
+                string sql_script_setID =
                 /* Início do script de exclusão de dados*/
-                "SELECT LAST_INSERT_ID();";
+                "SELECT MAX(id) as id FROM pessoa;";
                 /* Final do script de exclusão de dados*/
 
                 Conexao_Com_DB.Open();
 
-                MySqlCommand EnviarComando_lastID = new MySqlCommand(sql_script_lastID, Conexao_Com_DB);
+                MySqlCommand EnviarComando_setID = new MySqlCommand(sql_script_setID, Conexao_Com_DB);
 
-                MySqlDataReader reader = EnviarComando_lastID.ExecuteReader();
+                MySqlDataReader reader = EnviarComando_setID.ExecuteReader();
 
-                int lastID=1;
+                int setID = 0;
 
-                while (reader.Read())
+                try {
+                    while (reader.Read())
+                    {
+                    setID = reader.GetInt16(0);
+                    setID++;
+                    }
+                }
+                catch
                 {
-                    lastID = reader.GetInt16(0);
-                    lastID++;
+                setID = 1;
                 }
 
                 string sql_script =
 
                     /* Início do script */
                     "INSERT INTO pessoa(id, nome, cpf, endereco, telefones)" +
-                    "VALUES('" + lastID + "','" + pessoa.nome + "','" + pessoa.cpf + "','" + lastID + "','"+ lastID + "');" +
+                    "VALUES('" + setID + "','" + pessoa.nome + "','" + pessoa.cpf + "','" + setID + "','"+ setID + "');" +
 
                     "INSERT INTO endereco(id, logradouro, numero, cep, bairro, cidade, estado)" +
-                    "VALUES('" + lastID + "','" + end_Pessoa.logradouro + "','" + end_Pessoa.numero + "','" + end_Pessoa.cep +
+                    "VALUES('" + setID + "','" + end_Pessoa.logradouro + "','" + end_Pessoa.numero + "','" + end_Pessoa.cep +
                     "','" + end_Pessoa.bairro + "','" + end_Pessoa.cidade + "','" + end_Pessoa.estado + "');" +
 
                     "INSERT INTO telefone(id, numero, ddd, tipo)" +
-                    "VALUES('" + lastID + "','" + telefone_pessoa.numero + "','" + telefone_pessoa.ddd + "','" + 1 + "');"+
+                    "VALUES('" + setID + "','" + telefone_pessoa.numero + "','" + telefone_pessoa.ddd + "','" + tipotelefone_Pessoa.id_telefone + "');"+
                     "INSERT INTO pessoa_telefone(id_pessoa, id_telefone)" +
-                    "VALUES('"+ lastID + "','"+ lastID + "');";
+                    "VALUES('"+ setID + "','"+ setID + "');";
                 /* Final do script */
 
                 reader.Close();
@@ -248,11 +256,11 @@ namespace WindowsFormsPIMVIII
         private int Check_telefone_tipo()
         {
 
-            if ((radioTelefone.Checked == false) && (radioCelular.Checked == true))
+            if ((radioCelular.Checked == true))
             {
                 return 1;
             }
-            else if ((radioTelefone.Checked == true) && (radioCelular.Checked = false))
+            if ((radioTelefone.Checked == true))
             {
                 return 2;
             }
@@ -260,7 +268,7 @@ namespace WindowsFormsPIMVIII
             {
                 MessageBox.Show("Você deve selecionar o tipo de telefone.");
             }
-            return 0;
+            return 2;
         }
 
         private void buttonRefresh_Click(object sender, EventArgs e)
@@ -275,14 +283,14 @@ namespace WindowsFormsPIMVIII
                 string sql_script =
 
                 /* Início do script de exclusão de dados*/
-                "SELECT * FROM pessoa;" +
-                "SELECT * FROM telefone;"+
-                "SELECT * FROM endereco;";
+                "SELECT id, nome, cpf FROM pessoa;" +
+                "SELECT numero, ddd, tipo FROM telefone;" +
+                "SELECT logradouro, numero, cep, bairro, cidade, estado tipo FROM endereco;";
                 /* Final do script de exclusão de dados*/
 
-                Conexao_Com_DB.Open();
-
                 MySqlCommand EnviarComando = new MySqlCommand(sql_script, Conexao_Com_DB);
+
+                Conexao_Com_DB.Open();
 
                 MySqlDataReader reader = EnviarComando.ExecuteReader();
 
@@ -295,21 +303,12 @@ namespace WindowsFormsPIMVIII
                         reader.GetString(0),
                         reader.GetString(1),
                         reader.GetString(2),
-                        reader.GetString(3),
-                        reader.GetString(4),
-                        reader.GetString(5),
-                        reader.GetString(6),
-                        reader.GetString(7),
-                        reader.GetString(8),
-                        reader.GetString(9),
-                        reader.GetString(10),
-                        reader.GetString(11),
-                        reader.GetString(12),
-                        reader.GetString(13),
-                        reader.GetString(14),
                     };
+
+                  
                     var linha_listView1 = new ListViewItem(row);
                     listView1.Items.Add(linha_listView1);
+
                 }
 
                 MessageBox.Show("Sucesso na operação [Op 4 - Exibir Dados].");

@@ -62,6 +62,8 @@ namespace WindowsFormsPIMVIII
             this.atuinfo = new System.Windows.Forms.Button();
             this.inserinfo = new System.Windows.Forms.Button();
             this.buttonRefresh = new System.Windows.Forms.Button();
+            this.listView2 = new System.Windows.Forms.ListView();
+            this.listView3 = new System.Windows.Forms.ListView();
             this.tabControl1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -291,7 +293,7 @@ namespace WindowsFormsPIMVIII
             this.listView1.HideSelection = false;
             this.listView1.Location = new System.Drawing.Point(420, 25);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(1009, 409);
+            this.listView1.Size = new System.Drawing.Size(268, 409);
             this.listView1.TabIndex = 22;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
@@ -402,12 +404,32 @@ namespace WindowsFormsPIMVIII
             this.buttonRefresh.UseVisualStyleBackColor = true;
             this.buttonRefresh.Click += new System.EventHandler(this.buttonRefresh_Click);
             // 
+            // listView2
+            // 
+            this.listView2.HideSelection = false;
+            this.listView2.Location = new System.Drawing.Point(694, 25);
+            this.listView2.Name = "listView2";
+            this.listView2.Size = new System.Drawing.Size(268, 409);
+            this.listView2.TabIndex = 36;
+            this.listView2.UseCompatibleStateImageBehavior = false;
+            // 
+            // listView3
+            // 
+            this.listView3.HideSelection = false;
+            this.listView3.Location = new System.Drawing.Point(968, 25);
+            this.listView3.Name = "listView3";
+            this.listView3.Size = new System.Drawing.Size(461, 409);
+            this.listView3.TabIndex = 37;
+            this.listView3.UseCompatibleStateImageBehavior = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.ClientSize = new System.Drawing.Size(1441, 546);
+            this.Controls.Add(this.listView3);
+            this.Controls.Add(this.listView2);
             this.Controls.Add(this.buttonRefresh);
             this.Controls.Add(this.inserinfo);
             this.Controls.Add(this.atuinfo);
@@ -485,6 +507,8 @@ namespace WindowsFormsPIMVIII
         private System.Windows.Forms.Button atuinfo;
         private System.Windows.Forms.Button inserinfo;
         private System.Windows.Forms.Button buttonRefresh;
+        private System.Windows.Forms.ListView listView2;
+        private System.Windows.Forms.ListView listView3;
     }
 }
 
