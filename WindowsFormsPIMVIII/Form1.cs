@@ -21,6 +21,7 @@ namespace WindowsFormsPIMVIII
         public Form1()
         {
             InitializeComponent();
+            Refresh_pessoas();
 
             //Ajustes dos lists view
             listView1.View = View.Details; listView2.View = View.Details; listView3.View = View.Details;
@@ -190,6 +191,7 @@ namespace WindowsFormsPIMVIII
 
                 Info_Leitura.ExecuteReader();
 
+                Refresh_pessoas();
                 MessageBox.Show("Sucesso na operação [Op 1 - Inserir dados].");
 
             }
@@ -254,6 +256,7 @@ namespace WindowsFormsPIMVIII
 
                 Info_Leitura.ExecuteReader();
 
+                Refresh_pessoas();
                 MessageBox.Show("Sucesso na operação [Op 2 - Atualizar dados].");
 
             }
@@ -294,6 +297,7 @@ namespace WindowsFormsPIMVIII
 
                 Info_Leitura.ExecuteReader();
 
+                Refresh_pessoas();
                 MessageBox.Show("Sucesso na operação [Op 3 - Excluir dados].");
 
             }
@@ -306,12 +310,6 @@ namespace WindowsFormsPIMVIII
                 Conexao_Com_DB.Close();
             }
         }
-
-        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private int Check_telefone_tipo()
         {
 
@@ -329,8 +327,7 @@ namespace WindowsFormsPIMVIII
             }
             return 2;
         }
-
-        private void buttonRefresh_Click(object sender, EventArgs e)
+        private void Refresh_pessoas()
         {
             try
             {
@@ -357,7 +354,7 @@ namespace WindowsFormsPIMVIII
 
                 MySqlDataReader reader_Pessoa = EnviarComando.ExecuteReader();
                 listView1.Items.Clear();
-                
+
                 while (reader_Pessoa.Read())
                 {
                     string[] row =
@@ -381,9 +378,9 @@ namespace WindowsFormsPIMVIII
                 {
                     string[] row1 =
                       {
-                        reader_Pessoa.GetString(0),
-                        reader_Pessoa.GetString(1),
-                        reader_Pessoa.GetString(2),
+                        reader_Telefone.GetString(0),
+                        reader_Telefone.GetString(1),
+                        reader_Telefone.GetString(2),
                     };
 
                     var linha_listView2 = new ListViewItem(row1);
@@ -399,12 +396,12 @@ namespace WindowsFormsPIMVIII
                 {
                     string[] row2 =
                       {
-                        reader_Pessoa.GetString(0),
-                        reader_Pessoa.GetString(1),
-                        reader_Pessoa.GetString(2),
-                        reader_Pessoa.GetString(3),
-                        reader_Pessoa.GetString(4),
-                        reader_Pessoa.GetString(5),
+                        reader_Endereco.GetString(0),
+                        reader_Endereco.GetString(1),
+                        reader_Endereco.GetString(2),
+                        reader_Endereco.GetString(3),
+                        reader_Endereco.GetString(4),
+                        reader_Endereco.GetString(5),
                     };
 
                     var linha_listView3 = new ListViewItem(row2);
@@ -412,8 +409,6 @@ namespace WindowsFormsPIMVIII
                 }
 
                 reader_Endereco.Close();
-
-                MessageBox.Show("Sucesso na operação [Op 4 - Exibir Dados].");
 
             }
             catch (Exception ex)
@@ -425,6 +420,7 @@ namespace WindowsFormsPIMVIII
                 Conexao_Com_DB.Close();
             }
         }
+
     }
 
 }

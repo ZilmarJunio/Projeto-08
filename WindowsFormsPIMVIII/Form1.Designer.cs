@@ -29,6 +29,7 @@ namespace WindowsFormsPIMVIII
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
@@ -61,7 +62,6 @@ namespace WindowsFormsPIMVIII
             this.txtCPF = new System.Windows.Forms.TextBox();
             this.atuinfo = new System.Windows.Forms.Button();
             this.inserinfo = new System.Windows.Forms.Button();
-            this.buttonRefresh = new System.Windows.Forms.Button();
             this.listView2 = new System.Windows.Forms.ListView();
             this.listView3 = new System.Windows.Forms.ListView();
             this.tabControl1.SuspendLayout();
@@ -296,15 +296,15 @@ namespace WindowsFormsPIMVIII
             this.listView1.Size = new System.Drawing.Size(268, 409);
             this.listView1.TabIndex = 0;
             this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
             // 
             // excluinfo
             // 
             this.excluinfo.Cursor = System.Windows.Forms.Cursors.Hand;
             this.excluinfo.Font = new System.Drawing.Font("Avenir Next", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.excluinfo.Location = new System.Drawing.Point(773, 482);
+            this.excluinfo.ForeColor = System.Drawing.SystemColors.Desktop;
+            this.excluinfo.Location = new System.Drawing.Point(682, 489);
             this.excluinfo.Name = "excluinfo";
-            this.excluinfo.Size = new System.Drawing.Size(135, 35);
+            this.excluinfo.Size = new System.Drawing.Size(101, 31);
             this.excluinfo.TabIndex = 17;
             this.excluinfo.Text = "Remover";
             this.excluinfo.UseVisualStyleBackColor = true;
@@ -314,16 +314,16 @@ namespace WindowsFormsPIMVIII
             // 
             this.textIDRemover.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textIDRemover.Font = new System.Drawing.Font("Avenir Next", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textIDRemover.Location = new System.Drawing.Point(669, 486);
+            this.textIDRemover.Location = new System.Drawing.Point(625, 491);
             this.textIDRemover.Name = "textIDRemover";
-            this.textIDRemover.Size = new System.Drawing.Size(100, 29);
+            this.textIDRemover.Size = new System.Drawing.Size(51, 29);
             this.textIDRemover.TabIndex = 16;
             // 
             // label10
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Avenir Next", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(685, 449);
+            this.label10.Location = new System.Drawing.Point(416, 497);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(203, 22);
             this.label10.TabIndex = 25;
@@ -334,7 +334,7 @@ namespace WindowsFormsPIMVIII
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Avenir Next", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(153, 449);
+            this.label11.Location = new System.Drawing.Point(20, 494);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(204, 22);
             this.label11.TabIndex = 0;
@@ -345,9 +345,9 @@ namespace WindowsFormsPIMVIII
             // 
             this.textIDAtualizar.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textIDAtualizar.Font = new System.Drawing.Font("Avenir Next", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textIDAtualizar.Location = new System.Drawing.Point(139, 486);
+            this.textIDAtualizar.Location = new System.Drawing.Point(230, 492);
             this.textIDAtualizar.Name = "textIDAtualizar";
-            this.textIDAtualizar.Size = new System.Drawing.Size(100, 29);
+            this.textIDAtualizar.Size = new System.Drawing.Size(56, 29);
             this.textIDAtualizar.TabIndex = 14;
             // 
             // txtNome
@@ -372,9 +372,9 @@ namespace WindowsFormsPIMVIII
             // 
             this.atuinfo.Cursor = System.Windows.Forms.Cursors.Hand;
             this.atuinfo.Font = new System.Drawing.Font("Avenir Next", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.atuinfo.Location = new System.Drawing.Point(245, 482);
+            this.atuinfo.Location = new System.Drawing.Point(292, 491);
             this.atuinfo.Name = "atuinfo";
-            this.atuinfo.Size = new System.Drawing.Size(135, 35);
+            this.atuinfo.Size = new System.Drawing.Size(101, 30);
             this.atuinfo.TabIndex = 15;
             this.atuinfo.Text = "Atualizar";
             this.atuinfo.UseVisualStyleBackColor = true;
@@ -391,18 +391,6 @@ namespace WindowsFormsPIMVIII
             this.inserinfo.Text = "Enviar";
             this.inserinfo.UseVisualStyleBackColor = true;
             this.inserinfo.Click += new System.EventHandler(this.inserinfo_Click);
-            // 
-            // buttonRefresh
-            // 
-            this.buttonRefresh.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.buttonRefresh.Font = new System.Drawing.Font("Avenir Next", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonRefresh.Location = new System.Drawing.Point(1236, 480);
-            this.buttonRefresh.Name = "buttonRefresh";
-            this.buttonRefresh.Size = new System.Drawing.Size(193, 35);
-            this.buttonRefresh.TabIndex = 18;
-            this.buttonRefresh.Text = "Ver Alterações";
-            this.buttonRefresh.UseVisualStyleBackColor = true;
-            this.buttonRefresh.Click += new System.EventHandler(this.buttonRefresh_Click);
             // 
             // listView2
             // 
@@ -426,11 +414,11 @@ namespace WindowsFormsPIMVIII
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.AutoSize = true;
+            this.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.ClientSize = new System.Drawing.Size(1441, 546);
             this.Controls.Add(this.listView3);
             this.Controls.Add(this.listView2);
-            this.Controls.Add(this.buttonRefresh);
             this.Controls.Add(this.inserinfo);
             this.Controls.Add(this.atuinfo);
             this.Controls.Add(this.txtCPF);
@@ -462,7 +450,8 @@ namespace WindowsFormsPIMVIII
             this.Controls.Add(this.label1);
             this.Controls.Add(this.label2);
             this.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.ForeColor = System.Drawing.SystemColors.Desktop;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "Form1";
             this.Text = "HighTech - Cadastro";
@@ -506,7 +495,6 @@ namespace WindowsFormsPIMVIII
         private System.Windows.Forms.TextBox txtCPF;
         private System.Windows.Forms.Button atuinfo;
         private System.Windows.Forms.Button inserinfo;
-        private System.Windows.Forms.Button buttonRefresh;
         private System.Windows.Forms.ListView listView2;
         private System.Windows.Forms.ListView listView3;
     }
